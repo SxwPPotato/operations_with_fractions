@@ -15,11 +15,11 @@ public:
     }
 
 
-    std::string operator+ (Fraction right) {
+    Fraction operator+ (Fraction right) {
         if (denominator_ == right.denominator_) {
             int newnumerator = numerator_ + right.numerator_;
 
-                return  std::to_string(newnumerator) + "/" + std::to_string(denominator_);
+                return Fraction( newnumerator , denominator_);
         }
         else {
             int newnumerator = numerator_ * right.denominator_ + denominator_ * right.numerator_;
@@ -29,16 +29,16 @@ public:
                 newnumerator = newnumerator / 2;
                 newdenominator = newdenominator / 2;
             }
-            return std::to_string(newnumerator) + "/" + std::to_string(newdenominator);
+            return Fraction (newnumerator , newdenominator);
         }
       
     }
 
-    std::string operator- (Fraction right) {
+    Fraction operator- (Fraction right) {
         if (denominator_ == right.denominator_) {
             int newnumerator = numerator_ - right.numerator_;
 
-            return  std::to_string(newnumerator) + "/" + std::to_string(denominator_);
+            return Fraction (newnumerator, denominator_);
         }
         else {
             int newnumerator = numerator_ * right.denominator_ - denominator_ * right.numerator_;
@@ -48,12 +48,12 @@ public:
                 newnumerator = newnumerator / 2;
                 newdenominator = newdenominator / 2;
             }
-            return std::to_string(newnumerator) + "/" + std::to_string(newdenominator);
+            return Fraction (newnumerator, newdenominator);
         }
 
     }
 
-    std::string operator* (Fraction right) {
+    Fraction operator* (Fraction right) {
       
             int newnumerator = numerator_ * right.numerator_;
             int newdenominator = denominator_ * right.denominator_;
@@ -62,11 +62,11 @@ public:
                 newnumerator = newnumerator / 2;
                 newdenominator = newdenominator / 2;
             }
-            return std::to_string(newnumerator) + "/" + std::to_string(newdenominator);
+            return Fraction(newnumerator, newdenominator);
 
     }
 
-    std::string operator/ (Fraction right) {
+    Fraction operator/ (Fraction right) {
 
         int newnumerator = numerator_ * right.denominator_;
         int newdenominator = denominator_ * right.numerator_;
@@ -75,7 +75,7 @@ public:
             newnumerator = newnumerator / 2;
             newdenominator = newdenominator / 2;
         }
-        return std::to_string(newnumerator) + "/" + std::to_string(newdenominator);
+        return Fraction(newnumerator, newdenominator);
 
     }
 
@@ -109,7 +109,7 @@ public:
     }
 
     void frac() {
-        std::cout << numerator_ << "/" << denominator_;
+        std::cout << numerator_ << "/" << denominator_ << "\n";
     }
 
 
@@ -126,7 +126,6 @@ public:
         std::cout << signs << numerator_ << "/" << denominator_  << " " << oper << " " << right.numerator_ << "/" << right.denominator_ << " = ";
 
     }
-
 };
 
 int main()
@@ -152,28 +151,34 @@ int main()
 
 
     f1.Print(f2, '+');
-    std::cout << f1 + f2 << "\n";
+    Fraction f3 = f1 + f2;
+    f3.frac();
 
     f1.Print(f2, '-');
-    std::cout << f1 - f2 << "\n";
+    Fraction f4 = f1 - f2;
+    f4.frac();
 
     f1.Print(f2, '*');
-    std::cout << f1 * f2 << "\n";
+    Fraction f5 = f1 * f2;
+    f5.frac();
 
     f1.Print(f2, '/');
-    std::cout << f1 / f2 << "\n";
+    Fraction f6 = f1 / f2;
+    f6.frac();
 
    
     f1.PrefixPrint(f2, '*',"++");
-    std::cout << ++f1 * f2 << "\n";
-  
+    Fraction f7 = ++f1 * f2;
+    f7.frac();
+
     std::cout << "Значение дроби 1 = ";
     f1.frac();
     std::cout << "\n";
 
    
     f1.PostfixPrint(f2, '*', "--");
-    std::cout << f1-- * f2 << "\n";
+    Fraction f8 = f1-- * f2;
+    f8.frac();
 
     std::cout << "Значение дроби 1 = ";
     f1.frac();
